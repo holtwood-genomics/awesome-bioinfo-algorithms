@@ -176,7 +176,7 @@ class TestCheckUrl:
 
         async def run_test() -> None:
             mock_session = MagicMock()
-            mock_session.head.side_effect = asyncio.TimeoutError()
+            mock_session.head.side_effect = TimeoutError()
 
             status, error = await check_url(mock_session, "https://example.com")
             assert status is None

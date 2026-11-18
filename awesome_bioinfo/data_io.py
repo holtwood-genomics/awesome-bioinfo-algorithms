@@ -5,7 +5,6 @@ Handles importing and exporting algorithm data in YAML and JSON formats.
 
 import json
 import os
-from typing import Optional
 
 import yaml
 
@@ -25,8 +24,8 @@ class DataIO:
 
     def __init__(
         self,
-        registry: Optional[AlgorithmRegistry] = None,
-        category_manager: Optional[CategoryManager] = None,
+        registry: AlgorithmRegistry | None = None,
+        category_manager: CategoryManager | None = None,
     ):
         self._registry = registry or AlgorithmRegistry()
         self._category_manager = category_manager or CategoryManager()

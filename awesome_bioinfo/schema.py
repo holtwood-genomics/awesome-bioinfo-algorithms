@@ -5,7 +5,6 @@ Defines Category, Reference, and AlgorithmEntry dataclasses.
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional
 
 VALID_DIFFICULTIES = ("beginner", "intermediate", "advanced")
 VALID_REFERENCE_TYPES = ("tutorial", "blog", "video", "book", "documentation", "slides")
@@ -60,7 +59,7 @@ class Category:
     description: str = ""
     description_en: str = ""
     subcategories: list["Category"] = field(default_factory=list)
-    parent_id: Optional[str] = None
+    parent_id: str | None = None
 
     def to_dict(self) -> dict:
         """Convert to dictionary for serialization."""
@@ -77,7 +76,7 @@ class Category:
         return result
 
     @classmethod
-    def from_dict(cls, data: dict, parent_id: Optional[str] = None) -> "Category":
+    def from_dict(cls, data: dict, parent_id: str | None = None) -> "Category":
         """Create Category from dictionary."""
         subcategories = []
         if "subcategories" in data:

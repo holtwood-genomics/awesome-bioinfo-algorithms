@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/Algorithms-186-blue.svg" alt="Algorithms">
   <img src="https://img.shields.io/badge/Categories-16-green.svg" alt="Categories">
   <img src="https://img.shields.io/badge/Tags-382-orange.svg" alt="Tags">
-  <img src="https://img.shields.io/badge/Python-3.9%2B-blue?logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Python-3.11%2B-blue?logo=python" alt="Python">
 </p>
 
 <p align="center">

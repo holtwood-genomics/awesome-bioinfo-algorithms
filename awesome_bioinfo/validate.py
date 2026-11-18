@@ -7,7 +7,7 @@ import os
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any
 
 import yaml
 
@@ -362,11 +362,11 @@ class Validator(FieldValidator):
     Maintains backward compatibility with tests that expect stateful validation.
     """
 
-    def __init__(self, valid_categories: Optional[list[str]] = None):
+    def __init__(self, valid_categories: list[str] | None = None):
         """Initialize validator with optional list of valid category IDs."""
         super().__init__()
         self.valid_categories = valid_categories or []
-        self.category_parents: dict[str, Optional[str]] = {}
+        self.category_parents: dict[str, str | None] = {}
         self._categories_loaded = valid_categories is not None
 
     def validate_algorithm(self, data: dict[str, Any]) -> ValidationResult:
@@ -410,7 +410,7 @@ class Validator(FieldValidator):
         return result
 
     def validate_algorithms_file(
-        self, file_path: str, parsed: Optional[dict[str, Any]] = None
+        self, file_path: str, parsed: dict[str, Any] | None = None
     ) -> ValidationResult:
         """
         Validate an algorithms YAML file.
@@ -574,9 +574,9 @@ class Validator(FieldValidator):
         self,
         categories: list[dict[str, Any]],
         result: ValidationResult,
-        parent_id: Optional[str] = None,
-        relationships: Optional[dict[str, Optional[str]]] = None,
-    ) -> dict[str, Optional[str]]:
+        parent_id: str | None = None,
+        relationships: dict[str, str | None] | None = None,
+    ) -> dict[str, str | None]:
         """Collect category IDs and their parent category IDs."""
         if relationships is None:
             relationships = {}

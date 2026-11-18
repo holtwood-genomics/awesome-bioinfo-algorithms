@@ -18,7 +18,6 @@ import io
 import json
 import sys
 from pathlib import Path
-from typing import Optional
 
 from .algorithm_registry import AlgorithmRegistry
 from .category_manager import CategoryManager
@@ -221,7 +220,7 @@ def cmd_info(
 
 def _resolve_algorithm(
     registry: AlgorithmRegistry, algo_id: str
-) -> tuple[Optional[AlgorithmEntry], list[AlgorithmEntry]]:
+) -> tuple[AlgorithmEntry | None, list[AlgorithmEntry]]:
     """Resolve an algorithm by exact ID or unambiguous fuzzy search."""
     algo = registry.get_algorithm(algo_id)
     if algo:
@@ -244,7 +243,7 @@ def cmd_compare(
     r1, r1_candidates = _resolve_algorithm(registry, id1)
     r2, r2_candidates = _resolve_algorithm(registry, id2)
 
-    problems: list[tuple[str, str, Optional[list[AlgorithmEntry]]]] = []
+    problems: list[tuple[str, str, list[AlgorithmEntry] | None]] = []
     if r1_candidates:
         problems.append(("ambiguous", id1, r1_candidates))
     elif not r1:
@@ -392,7 +391,7 @@ def cmd_export(
     return 0
 
 
-def cmd_generate(output_path: Optional[Path] = None) -> int:
+def cmd_generate(output_path: Path | None = None) -> int:
     """Generate README.md from algorithm data."""
     base_dir, missing_paths = ensure_repo_layout()
     if missing_paths:
@@ -607,7 +606,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv: Optional[list[str]] = None) -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 

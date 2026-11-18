@@ -5,7 +5,6 @@ Manages algorithm categories and subcategories.
 
 import os
 from dataclasses import dataclass, field
-from typing import Optional
 
 import yaml
 
@@ -18,7 +17,7 @@ class CategoryRelationships:
     """Stores category/subcategory relationships for validation."""
 
     valid_categories: list[str] = field(default_factory=list)
-    category_parents: dict[str, Optional[str]] = field(default_factory=dict)
+    category_parents: dict[str, str | None] = field(default_factory=dict)
 
 
 class CategoryManager:
@@ -75,7 +74,7 @@ class CategoryManager:
         self._relationships.valid_categories = list(self._category_map.keys())
         self._relationships.category_parents = {}
 
-        def collect_parents(categories: list[Category], parent_id: Optional[str] = None):
+        def collect_parents(categories: list[Category], parent_id: str | None = None):
             for cat in categories:
                 self._relationships.category_parents[cat.id] = parent_id
                 if cat.subcategories:
@@ -83,7 +82,7 @@ class CategoryManager:
 
         collect_parents(self._categories)
 
-    def get_category(self, category_id: str) -> Optional[Category]:
+    def get_category(self, category_id: str) -> Category | None:
         """
         Get a category by its ID.
 
@@ -128,7 +127,7 @@ class CategoryManager:
             return category.subcategories.copy()
         return []
 
-    def get_parent_category(self, category_id: str) -> Optional[Category]:
+    def get_parent_category(self, category_id: str) -> Category | None:
         """
         Get the parent category of a subcategory.
 
@@ -169,7 +168,7 @@ class CategoryManager:
         """Get all valid category IDs including subcategories."""
         return self._relationships.valid_categories.copy()
 
-    def get_category_parents(self) -> dict[str, Optional[str]]:
+    def get_category_parents(self) -> dict[str, str | None]:
         """Get mapping of category_id -> parent_category_id."""
         return self._relationships.category_parents.copy()
 
