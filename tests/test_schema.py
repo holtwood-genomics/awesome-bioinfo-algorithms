@@ -105,7 +105,7 @@ def test_property_4_optional_fields_storage(entry: AlgorithmEntry):
     assert restored_entry.difficulty == entry.difficulty
     assert restored_entry.language == entry.language
     assert len(restored_entry.references) == len(entry.references)
-    for orig, rest in zip(entry.references, restored_entry.references):
+    for orig, rest in zip(entry.references, restored_entry.references, strict=False):
         assert rest.url == orig.url
         assert rest.title == orig.title
         assert rest.type == orig.type

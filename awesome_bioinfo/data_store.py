@@ -4,7 +4,6 @@ Provides a unified interface for loading and accessing algorithm data.
 """
 
 from pathlib import Path
-from typing import Optional
 
 from .algorithm_registry import AlgorithmRegistry, RegistryStats
 from .category_manager import CategoryManager
@@ -18,7 +17,7 @@ class DataStore:
     Manages AlgorithmRegistry and CategoryManager with automatic coordination.
     """
 
-    def __init__(self, base_dir: Optional[Path] = None):
+    def __init__(self, base_dir: Path | None = None):
         """
         Initialize DataStore with optional base directory.
 
@@ -26,9 +25,9 @@ class DataStore:
             base_dir: Project root directory. If None, uses current working directory.
         """
         self._base_dir = base_dir or Path.cwd()
-        self._registry: Optional[AlgorithmRegistry] = None
-        self._category_manager: Optional[CategoryManager] = None
-        self._field_validator: Optional[FieldValidator] = None
+        self._registry: AlgorithmRegistry | None = None
+        self._category_manager: CategoryManager | None = None
+        self._field_validator: FieldValidator | None = None
 
     @property
     def base_dir(self) -> Path:
@@ -109,7 +108,7 @@ class DataStore:
     # Algorithm accessors (delegate to registry)
     # =========================================================================
 
-    def get_algorithm(self, algo_id: str) -> Optional[AlgorithmEntry]:
+    def get_algorithm(self, algo_id: str) -> AlgorithmEntry | None:
         """Get an algorithm by ID."""
         return self.registry.get_algorithm(algo_id)
 
@@ -137,7 +136,7 @@ class DataStore:
     # Category accessors (delegate to category_manager)
     # =========================================================================
 
-    def get_category(self, category_id: str) -> Optional[Category]:
+    def get_category(self, category_id: str) -> Category | None:
         """Get a category by ID."""
         return self.category_manager.get_category(category_id)
 

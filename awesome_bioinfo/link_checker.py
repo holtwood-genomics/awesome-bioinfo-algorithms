@@ -115,7 +115,7 @@ async def check_url(
                         return get_response.status, ""
                 return response.status, ""
         return None, "Too many redirects"
-    except asyncio.TimeoutError:
+    except TimeoutError:
         return None, "Timeout"
     except aiohttp.ClientError as e:
         return None, str(e)

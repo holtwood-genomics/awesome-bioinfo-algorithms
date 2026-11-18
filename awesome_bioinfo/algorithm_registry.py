@@ -6,7 +6,6 @@ Manages loading, searching, and organizing algorithm entries.
 import glob
 import os
 from dataclasses import dataclass
-from typing import Optional
 
 import yaml
 
@@ -157,7 +156,7 @@ class AlgorithmRegistry:
 
         return results
 
-    def get_algorithm(self, algo_id: str) -> Optional[AlgorithmEntry]:
+    def get_algorithm(self, algo_id: str) -> AlgorithmEntry | None:
         """Get an algorithm by its ID."""
         return self._by_id.get(algo_id)
 

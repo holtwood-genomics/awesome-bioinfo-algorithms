@@ -133,7 +133,7 @@ def test_property_11_round_trip_yaml(data):
             f"Should have {len(categories)} categories, got {len(imported_categories)}"
         )
 
-        for orig, imported in zip(categories, imported_categories):
+        for orig, imported in zip(categories, imported_categories, strict=False):
             assert orig.id == imported.id, "Category ID should match"
             assert orig.name == imported.name, "Category name should match"
             assert orig.name_en == imported.name_en, "Category name_en should match"
@@ -143,7 +143,7 @@ def test_property_11_round_trip_yaml(data):
             f"Should have {len(algorithms)} algorithms, got {len(imported_algorithms)}"
         )
 
-        for orig, imported in zip(algorithms, imported_algorithms):
+        for orig, imported in zip(algorithms, imported_algorithms, strict=False):
             assert orig.id == imported.id, "Algorithm ID should match"
             assert orig.name == imported.name, "Algorithm name should match"
             assert orig.description == imported.description, "Algorithm description should match"
@@ -219,7 +219,7 @@ def test_dict_round_trip(data):
     assert len(imported_categories) == len(categories)
     assert len(imported_algorithms) == len(algorithms)
 
-    for orig, imported in zip(algorithms, imported_algorithms):
+    for orig, imported in zip(algorithms, imported_algorithms, strict=False):
         assert orig == imported, f"Algorithm {orig.id} should equal imported version"
 
 

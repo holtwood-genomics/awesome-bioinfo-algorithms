@@ -50,11 +50,11 @@ pytest tests/ -v --tb=short
 
 ```bash
 uv pip compile pyproject.toml --extra dev --generate-hashes --universal \
-  --python-version 3.9 -o requirements-dev.txt
+  --python-version 3.11 -o requirements-dev.txt
 ```
 
-- `--universal --python-version 3.9` 生成带 `python_full_version` 标记的跨版本、
-  跨平台锁，CI 的 3.9–3.12 矩阵共用一份。
+- `--universal --python-version 3.11` 生成带 `python_full_version` 标记的跨版本、
+  跨平台锁，CI 的 3.11–3.12 矩阵共用一份。
 - 改 `pyproject.toml` 依赖后必须重新生成并提交锁文件，否则 CI 装不到新依赖。
 - `ruff` 在 `pyproject.toml` 里精确固定，且必须与 `.pre-commit-config.yaml` 的
   `ruff-pre-commit` rev 一致：`ruff format` 输出随版本变化，两者不同版本会互相改写。
