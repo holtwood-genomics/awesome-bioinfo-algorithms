@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: 8d1fdcef5530fb53b66bf6b717bfd2b1ffb0160d  # v0.9.0
+    rev: c0f278f1254ccc8fb09676bcdb8d847e7db493e5  # v0.17.4
     hooks:
       - id: ruff
         files: ^(awesome_bioinfo|tests)/.*\.py$
