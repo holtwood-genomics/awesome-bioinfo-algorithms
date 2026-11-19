@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Question or Discussion
-    url: https://github.com/open-genomics/awesome-bioinfo-algorithms/discussions
+    url: https://github.com/holtwood-genomics/awesome-bioinfo-algorithms/discussions
     about: Please use Discussions for questions, ideas, and general discussion
   - name: Contributing Guidelines
-    url: https://github.com/open-genomics/awesome-bioinfo-algorithms/blob/master/CONTRIBUTING.md
+    url: https://github.com/holtwood-genomics/awesome-bioinfo-algorithms/blob/master/CONTRIBUTING.md
     about: Read our contributing guidelines

@@ -19,4 +19,4 @@ CLI Usage:
 """
 
 __version__ = "1.0.3"
-__author__ = "open-genomics Community"
+__author__ = "holtwood-genomics Community"
