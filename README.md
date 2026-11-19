@@ -2,9 +2,9 @@
 
 <p align="center">
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
-  <a href="https://github.com/open-genomics/awesome-bioinfo-algorithms/actions/workflows/ci.yml"><img src="https://github.com/open-genomics/awesome-bioinfo-algorithms/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/holtwood-genomics/awesome-bioinfo-algorithms/actions/workflows/ci.yml"><img src="https://github.com/holtwood-genomics/awesome-bioinfo-algorithms/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="http://creativecommons.org/publicdomain/zero/1.0/"><img src="https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg" alt="License"></a>
-  <a href="https://github.com/open-genomics/awesome-bioinfo-algorithms/blob/master/CITATION.cff"><img src="https://img.shields.io/badge/Cite%20Me-APA-blue" alt="Citation"></a>
+  <a href="https://github.com/holtwood-genomics/awesome-bioinfo-algorithms/blob/master/CITATION.cff"><img src="https://img.shields.io/badge/Cite%20Me-APA-blue" alt="Citation"></a>
 </p>
 
 <p align="center">
@@ -56,7 +56,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/open-genomics/awesome-bioinfo-algorithms.git
+git clone https://github.com/holtwood-genomics/awesome-bioinfo-algorithms.git
 cd awesome-bioinfo-algorithms
 
 # 安装依赖（哈希锁定的依赖清单，项目本体不重新解析依赖）
@@ -609,9 +609,9 @@ python -m awesome_bioinfo generate
 ```bibtex
 @software{awesome_bioinfo_algorithms,
   title = {Awesome Bioinformatics Algorithms},
-  author = {{open-genomics Community}},
+  author = {{holtwood-genomics Community}},
   year = {2025},
-  url = {https://github.com/open-genomics/awesome-bioinfo-algorithms}
+  url = {https://github.com/holtwood-genomics/awesome-bioinfo-algorithms}
 }
 ```
 
@@ -636,12 +636,12 @@ python -m awesome_bioinfo generate
 
 ## 🔗 相关项目
 
-- [wiki-bioinfo](https://github.com/open-genomics/wiki-bioinfo) — 生物信息学体系化知识库（连续阅读的知识地图）
-- [micos-2024](https://github.com/open-genomics/micos-2024) — 宏基因组学端到端分析流程
+- [wiki-bioinfo](https://github.com/holtwood-genomics/wiki-bioinfo) — 生物信息学体系化知识库（连续阅读的知识地图）
+- [micos-2024](https://github.com/holtwood-genomics/micos-2024) — 宏基因组学端到端分析流程
 
 ---
 
 <p align="center">
   <b>Made with ❤️ by the community</b><br>
-  © 2025-2026 <a href="https://github.com/open-genomics">open-genomics</a> Community
+  © 2025-2026 <a href="https://github.com/holtwood-genomics">holtwood-genomics</a> Community
 </p>

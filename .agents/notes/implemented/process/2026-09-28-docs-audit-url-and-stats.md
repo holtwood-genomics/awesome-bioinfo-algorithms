@@ -6,7 +6,7 @@ Status: implemented
 
 对文档做准确性审计（对照 `pyproject.toml`、`awesome_bioinfo/` 与 `data/`）发现六处问题：
 
-1. 仓库已转移到 `open-genomics` 组织（git remote 为 `open-genomics/awesome-bioinfo-algorithms`，访问 `github.com/LessUp/awesome-bioinfo-algorithms` 会被 GitHub 重定向到新地址），但 `templates/readme_template.md` 生成的 README 中 CI 徽章、clone 地址、bibtex `url`、页脚链接全部指向 `LessUp`；旧组织主页 `github.com/LessUp` 已 404，`LessUp` 只剩仓库级重定向，随时可能失效。
+1. 仓库已转移到 `holtwood-genomics` 组织（git remote 为 `holtwood-genomics/awesome-bioinfo-algorithms`，访问 `github.com/LessUp/awesome-bioinfo-algorithms` 会被 GitHub 重定向到新地址），但 `templates/readme_template.md` 生成的 README 中 CI 徽章、clone 地址、bibtex `url`、页脚链接全部指向 `LessUp`；旧组织主页 `github.com/LessUp` 已 404，`LessUp` 只剩仓库级重定向，随时可能失效。
 2. README 引用徽章指向 `blob/main/CITATION.cff`，而默认分支是 `master`（`origin/HEAD -> origin/master`），该徽章图片 404。
 3. issue 模板 `contact_links` 指向已下线的文档站 `lessup.github.io`（实测 404），并把贡献者引到 `LessUp` 仓库与不存在的 `main` 分支。
 4. `CLAUDE.md` 项目统计硬编码「195 条目 / 392 标签」，与数据实际值（`python -m awesome_bioinfo stats`：186 条 / 382 标签 / 16 分类）漂移；该节没有任何机制保持同步。
@@ -15,7 +15,7 @@ Status: implemented
 
 ## Decision
 
-- 文档表面的仓库定位信息（URL 与社区署名）统一指向 `open-genomics/awesome-bioinfo-algorithms` 与 `master` 分支：修改 `templates/readme_template.md`（CI 徽章、引用徽章、clone 地址、bibtex `url`、bibtex `author`、页脚）与 `.github/ISSUE_TEMPLATE/config.yml`，并重新生成 `README.md`。
+- 文档表面的仓库定位信息（URL 与社区署名）统一指向 `holtwood-genomics/awesome-bioinfo-algorithms` 与 `master` 分支：修改 `templates/readme_template.md`（CI 徽章、引用徽章、clone 地址、bibtex `url`、bibtex `author`、页脚）与 `.github/ISSUE_TEMPLATE/config.yml`，并重新生成 `README.md`。
 - `CLAUDE.md` 不再硬编码统计数字：版本指向 `pyproject.toml` 的 `version`，数量指向 `python -m awesome_bioinfo stats`，README 统计由 `generate` 自动同步——README 是统计的唯一展示处。
 - `## 📑 目录` 标题在模板中补显式 `<a id="目录"></a>` 锚点（与生成器给分类节加 `<a id="…"></a>` 的既有做法一致），不改 `readme_generator.py`。
 - `kallisto | bustools` 改名为 `kallisto + bustools`：这是数据文件而非文档，超出本次文档任务字面范围，但不改它则主文档 README 的破表无法修复（表格修复正确位置在生成器里做转义，但本任务禁止改代码）；改动仅为显示名，不影响 id、验证规则与任何字段语义。
@@ -33,7 +33,7 @@ Status: implemented
 
 代价：`kallisto + bustools` 与官方 `kallisto|bustools` 品牌写法略有出入；`<a id="目录"></a>` 是手工锚点，改「📑 目录」标题时需同步；`config.yml` 删除了文档站入口，若将来重建文档站需自行加回。
 
-后续（2026-09-28）统一收尾：`CITATION.cff`/`pyproject.toml` 的署名与 URL、`awesome_bioinfo/__init__.py` 的 `__author__`、`link_checker.py` 的 User-Agent 与 `tests/test_owner_metadata.py` 的期望值全部切到 open-genomics，README 署名与引用元数据不再分叉；`readme_generator.py` 补 `_escape_cell` 对表格数据单元格统一转义竖线（当时「治本方案在生成器」的判据落地，防御未来含 `|` 的新条目破表），数据侧保留 `+` 写法不变。
+后续（2026-09-28）统一收尾：`CITATION.cff`/`pyproject.toml` 的署名与 URL、`awesome_bioinfo/__init__.py` 的 `__author__`、`link_checker.py` 的 User-Agent 与 `tests/test_owner_metadata.py` 的期望值全部切到 holtwood-genomics，README 署名与引用元数据不再分叉；`readme_generator.py` 补 `_escape_cell` 对表格数据单元格统一转义竖线（当时「治本方案在生成器」的判据落地，防御未来含 `|` 的新条目破表），数据侧保留 `+` 写法不变。
 
 ## Verification
 
@@ -43,7 +43,7 @@ python -m awesome_bioinfo validate                                  # ✅ All da
 python -m awesome_bioinfo generate && git diff --exit-code -- README.md   # 先 generate 再重跑应无二次漂移
 python -m awesome_bioinfo generate --output /tmp/check.md && diff /tmp/check.md README.md  # 生成稳定
 rg -n "LessUp|blob/main|lessup\.github\.io" README.md templates/ .github/ pyproject.toml CITATION.cff awesome_bioinfo/ tests/  # 应无输出（笔记正文除外）
-rg -n "open-genomics" templates/readme_template.md                  # 5 处 URL/署名
+rg -n "holtwood-genomics" templates/readme_template.md                  # 5 处 URL/署名
 rg -n "195|392" CLAUDE.md                                           # 应无输出
 python3 -m pytest tests/test_owner_metadata.py                      # 4 passed（署名/URL 元数据门禁）
 npx tsx <skill>/scripts/verify-agent-note-tree.ts && npx tsx <skill>/scripts/verify-agent-note-format.ts

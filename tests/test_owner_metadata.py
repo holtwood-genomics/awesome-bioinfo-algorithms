@@ -12,8 +12,8 @@ import re
 WRONG_OWNER_RE = re.compile(
     r"(shane\.github\.io|github\.com/shane\b|shane/awesome-bioinfo)", re.IGNORECASE
 )
-CORRECT_AUTHOR = "open-genomics Community"
-CORRECT_REPO_URL = "https://github.com/open-genomics/awesome-bioinfo-algorithms"
+CORRECT_AUTHOR = "holtwood-genomics Community"
+CORRECT_REPO_URL = "https://github.com/holtwood-genomics/awesome-bioinfo-algorithms"
 
 
 # ---------------------------------------------------------------------------
@@ -62,7 +62,7 @@ def test_link_checker_repo_url_exact(project_root):
 
 
 def test_package_author_uses_canonical_owner():
-    """Package metadata should use the canonical open-genomics owner name."""
+    """Package metadata should use the canonical holtwood-genomics owner name."""
     from awesome_bioinfo import __author__
 
     assert __author__ == CORRECT_AUTHOR
